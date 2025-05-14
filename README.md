@@ -59,8 +59,3 @@ DATABASE_URL='postgres://postgres:postgres@localhost:5432/pisync'
 ---
 
 
-![image](https://github.com/user-attachments/assets/93f0ad3a-dbba-4865-ab0c-13f08da771f0)
-![image](https://github.com/user-attachments/assets/5bc6c374-2362-4e1a-ad71-ecf033922e82)
-![image](https://github.com/user-attachments/assets/81be8cce-80e2-42fb-ae7f-b8c2fcc3f689)
-
-
