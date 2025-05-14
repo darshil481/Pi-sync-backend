@@ -38,8 +38,9 @@ This dashboard helps the internal team monitor sync status and errors, and optio
 npm install
 
 # Initialize Prisma and DB
-npx prisma generate
 npx prisma migrate dev --name init
+npx prisma generate
+
 
 # Seed dummy devices
 npm run seed:seed_data
