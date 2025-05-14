@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum SyncStatus {
+  Success
+  Pending
+  Failed
+}
+enum QueueName {
+  EVENT_SYNCING
+}
+
+
+model Device {
+  id           String      @id @default(cuid())
+  deviceId     String      @unique
+  lastSync     DateTime
+  syncStatus   SyncStatus @default(Pending)
+  syncErrors   SyncError[]
+}
+
+model SyncError {
+  id         String   @id @default(cuid())
+  device     Device   @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+  deviceId   String
+  message    String
+  timestamp  DateTime @default(now())
+}
+
+model Queue {
+  id      Int       @id @default(autoincrement())
+  name    QueueName
+  message Json
+
+  created_at DateTime @default(now())
+
+  @@map("queue")
+}
